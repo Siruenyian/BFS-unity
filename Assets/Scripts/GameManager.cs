@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private string _nextLevel;
 
+    private bool isPaused=false;
+
     private void OnEnable()
     {
         if(_instance == null) { _instance = this; }
@@ -20,5 +22,17 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextLevel() {
         SceneManager.LoadScene(_nextLevel);
+    }
+
+    public void PauseGame()
+    {
+        isPaused = true;
+        Time.timeScale = 0;
+    }
+    public void UnpauseGame()
+    {
+        isPaused = false;
+        Time.timeScale = 1;
+
     }
 }

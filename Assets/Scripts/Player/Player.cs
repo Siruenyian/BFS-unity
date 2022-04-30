@@ -17,12 +17,14 @@ public class Player : MonoBehaviour
     {
         //get the reference to the searchpath
         _searchPath = FindObjectOfType<SearchPath>();
+        move();
     }
 
     public void move()
     {
         //get the list first
         List<Node> lis = _searchPath.Path();
+
         // Check, ensure a path exist
         if (lis != null)        
         {
@@ -34,18 +36,39 @@ public class Player : MonoBehaviour
         }
      
     }
-
+    int tries = 0;
     IEnumerator Movement(List<Node> paths)
     {
+        bool prev;
         //iterate each tile to move
-        foreach (Node path in paths) {
+        Debug.Log("==============================================================================");
+        for (int i = 0; i < paths.Count; i++)
+        {
+            //Debug.Log("ohoho "+i+paths[i].isobstacle);
+            if (paths[i].isobstacle)
+            {
+                //if the agent is still tring the same path
+                Debug.Log("Tries Path " + tries+" "+paths.Count);
 
-            Vector3 pos = path.transform.position;
+                if (tries == paths.Count)
+                {
+                    paths[i].RemoveObstacle();
+                    tries++;
+                    //break;
+                }
+                tries = paths.Count;
+                _searchPath._startingPoint = paths[i-1];
+                paths = _searchPath.Path();
+                StartCoroutine(Movement(paths));
+                yield break;
+            }
+            Vector3 pos = paths[i].transform.position;
 
             transform.position = new Vector3(pos.x, _yOffset, pos.z);
             yield return new WaitForSeconds(_movementSmoothing);
         }
-        _searchPath._startingPoint = paths[paths.Count - 1];
+        paths.Clear();
+        //_searchPath._startingPoint = paths[paths.Count - 1];
 
         //_searchPath._startingPoint = paths.Last();
 

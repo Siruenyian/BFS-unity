@@ -23,9 +23,9 @@ public class SearchPath : MonoBehaviour
     private bool _isExploring = true;                       
 
     // Used for storing the correct path to the target
-    private List<Node> _path = new List<Node>();            
+    private List<Node> _path = new List<Node>();
 
-
+    public bool noPath = false;
     // First method to do the searching and return the path to a player 
     public List<Node> Path() {
         
@@ -50,8 +50,17 @@ public class SearchPath : MonoBehaviour
         Node[] nodes = FindObjectsOfType<Node>();
 
         foreach (Node node in nodes) {
-            Vector2Int gridPos = node.GetPos();
-            _block.Add(gridPos, node);
+            if (node.isobstacle==false)
+            {
+                Vector2Int gridPos = node.GetPos();
+                _block.Add(gridPos, node);
+
+            }
+            else
+            {
+                Debug.Log(node.name);
+            }
+            
 
             //Debug.Log(node.name);
             // For checking if 2 nodes are in same position; i.e overlapping nodes
@@ -146,9 +155,9 @@ public class SearchPath : MonoBehaviour
 
         // While loop to set the path
         while (previousNode != _startingPoint) {
-            SetPath(previousNode);
-           
 
+           
+            SetPath(previousNode);
             Node isExploredFrom = previousNode.isExploredFrom;
             previousNode = isExploredFrom;
             

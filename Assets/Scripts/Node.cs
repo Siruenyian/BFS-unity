@@ -7,6 +7,9 @@ public class Node : MonoBehaviour
     
     [SerializeField] private int _gridSize = 11;                              // Grid snap units
     [SerializeField] private GameObject _highlight;
+    [SerializeField] private GameObject _obstackle;
+
+    public bool isobstacle = false;
     public int GridSize { get { return _gridSize; } }
     private SearchPath searchPath;
     public bool isExplored = false;
@@ -18,6 +21,16 @@ public class Node : MonoBehaviour
         player = FindObjectOfType<Player>();
     }
 
+    public void SetObstacle()
+    {
+        _obstackle.SetActive(true);
+        isobstacle = true;
+    }
+    public void RemoveObstacle()
+    {
+        _obstackle.SetActive(false);
+        isobstacle = false;
+    }
 
     private void Update()
     {
@@ -46,7 +59,8 @@ public class Node : MonoBehaviour
     private void OnMouseDown()
     {
         Debug.Log("Pressed!");
-        searchPath._endingPoint = this.gameObject.GetComponent<Node>();
-        player.move();
+        SetObstacle();
+        /*searchPath._endingPoint = this.gameObject.GetComponent<Node>();
+        player.move();*/
     }
 }
