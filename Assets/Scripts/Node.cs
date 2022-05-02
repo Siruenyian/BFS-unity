@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
-    
+
     [SerializeField] private int _gridSize = 11;                              // Grid snap units
     [SerializeField] private GameObject _highlight;
     [SerializeField] private GameObject _obstackle;
 
     public bool isobstacle = false;
     public int GridSize { get { return _gridSize; } }
-    private SearchPath searchPath;
+
     public bool isExplored = false;
     public Node isExploredFrom;
     Enemy enemy;
     private void Start()
     {
-        searchPath = FindObjectOfType<SearchPath>();
         enemy = FindObjectOfType<Enemy>();
     }
 
+    //Set or remove obstacle
     public void SetObstacle()
     {
         _obstackle.SetActive(true);
@@ -32,23 +32,22 @@ public class Node : MonoBehaviour
         isobstacle = false;
     }
 
-    private void Update()
-    {
-        
-    }
 
     // Get the current pos
     // Used in CubeEditorInEditMode.cs for snapping to grid
     public Vector2Int GetPos()
     {
-        return new Vector2Int(Mathf.RoundToInt(transform.position.x / _gridSize), 
+        return new Vector2Int(Mathf.RoundToInt(transform.position.x / _gridSize),
                               Mathf.RoundToInt(transform.position.z / _gridSize));
     }
 
     //For highlighting a destination
     private void OnMouseEnter()
     {
-        _highlight.SetActive(true);
+        if (GameManager.Instance.isPaused == false)
+        {
+            _highlight.SetActive(true);
+        }
     }
     private void OnMouseExit()
     {
@@ -59,8 +58,10 @@ public class Node : MonoBehaviour
     private void OnMouseDown()
     {
         Debug.Log("Pressed!");
-        SetObstacle();
-        /*searchPath._endingPoint = this.gameObject.GetComponent<Node>();
-        enemy.move();*/
+        if (GameManager.Instance.isPaused == false)
+        {
+            SetObstacle();
+        }
+
     }
 }

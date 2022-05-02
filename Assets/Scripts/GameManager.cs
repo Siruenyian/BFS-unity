@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string _nextLevel;
     
 
-    private bool isPaused=false;
+    public bool isPaused=false;
     
     private void OnEnable()
     {

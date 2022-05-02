@@ -20,16 +20,15 @@ public class SearchPath : MonoBehaviour
     // Current node we are searching
     private Node _searchingPoint;
     // For tracking if the algo is currently still exploring or not
-    private bool _isExploring = true;                       
+    private bool _isExploring = true;
 
     // Used for storing the correct path to the target
     private List<Node> _path = new List<Node>();
 
     public bool noPath = false;
     // First method to do the searching and return the path to a player 
-    public List<Node> Path() {
-        
-   
+    public List<Node> Path()
+    {
         ResetNods();
         _block.Clear();
         _path.Clear();
@@ -38,19 +37,18 @@ public class SearchPath : MonoBehaviour
         BFS();
         CreatePath();
         return _path;
-        
-        
     }
-  
+
 
     //preload all nodes and position in dictionary
     private void LoadAllBlocks()
     {
-       
+
         Node[] nodes = FindObjectsOfType<Node>();
 
-        foreach (Node node in nodes) {
-            if (node.isobstacle==false)
+        foreach (Node node in nodes)
+        {
+            if (node.isobstacle == false)
             {
                 Vector2Int gridPos = node.GetPos();
                 _block.Add(gridPos, node);
@@ -60,21 +58,21 @@ public class SearchPath : MonoBehaviour
             {
                 Debug.Log(node.name);
             }
-            
+
 
             //Debug.Log(node.name);
             // For checking if 2 nodes are in same position; i.e overlapping nodes
-           /* if (_block.ContainsKey(gridPos))
-            {
-                Debug.LogWarning("2 Nodes present in same position. i.e nodes overlapped.");
-            }
-            else
-            {
-                // Add the position of each node as key and the Node as the value
-                _block.Add(gridPos, node);       
-            }*/
+            /* if (_block.ContainsKey(gridPos))
+             {
+                 Debug.LogWarning("2 Nodes present in same position. i.e nodes overlapped.");
+             }
+             else
+             {
+                 // Add the position of each node as key and the Node as the value
+                 _block.Add(gridPos, node);       
+             }*/
         }
-        
+
     }
 
 
@@ -84,9 +82,9 @@ public class SearchPath : MonoBehaviour
         //_isExploring = true;
         //operate bfs with queue
         _queue.Enqueue(_startingPoint);
-        while (_queue.Count > 0 && _isExploring) {
+        while (_queue.Count > 0)
+        {
             _searchingPoint = _queue.Dequeue();
-            //OnReachingEnd();
             ExploreNeighbourNodes();
         }
     }
@@ -95,12 +93,13 @@ public class SearchPath : MonoBehaviour
     // To check if we've reached the Ending point
     private void OnReachingEnd()
     {
-        if (_searchingPoint == _endingPoint) {
+        if (_searchingPoint == _endingPoint)
+        {
             _isExploring = false;
         }
-       
+
         //_isExploring = true;
-        
+
     }
 
 
@@ -109,24 +108,26 @@ public class SearchPath : MonoBehaviour
     {
         //if (!_isExploring) { return; }
 
-        foreach (Vector2Int direction in _directions) {
+        foreach (Vector2Int direction in _directions)
+        {
             Vector2Int neighbourPos = _searchingPoint.GetPos() + direction;
             // If the explore neighbour is present in the dictionary _block, which contians all the blocks with Node.cs attached
 
-            if (_block.ContainsKey(neighbourPos))                           
+            if (_block.ContainsKey(neighbourPos))
             {
                 Node node = _block[neighbourPos];
                 // For checking if we've already explore this node
-                if (node.isExplored) { 
-                //idk do something
-                }                        
+                if (node.isExplored)
+                {
+                    //idk do something
+                }
                 else
                 {
                     // Queueing the node at this position
                     _queue.Enqueue(node);
                     // Set the parent/predecessor of this node
                     node.isExplored = true;
-                    node.isExploredFrom = _searchingPoint;      
+                    node.isExploredFrom = _searchingPoint;
                 }
             }
         }
@@ -137,7 +138,7 @@ public class SearchPath : MonoBehaviour
     {
         //Reset every node to unexplored
         //treat the board as a brand new one with nodes unexplored
-        foreach (KeyValuePair <Vector2Int, Node>  node in _block)
+        foreach (KeyValuePair<Vector2Int, Node> node in _block)
         {
             node.Value.isExplored = false;
         }
@@ -154,32 +155,35 @@ public class SearchPath : MonoBehaviour
         Node previousNode = _endingPoint.isExploredFrom;
 
         // While loop to set the path
-        while (previousNode != _startingPoint) {
+        while (previousNode != _startingPoint)
+        {
 
-           
+
             SetPath(previousNode);
             Node isExploredFrom = previousNode.isExploredFrom;
             previousNode = isExploredFrom;
-            
+
         }
         _path.Add(_startingPoint);
         //SetPath(_startingPoint);
         _path.Reverse();
         SetPathColor();
-        
+
     }
 
     // For adding to the path
-    private void SetPath(Node node) {
+    private void SetPath(Node node)
+    {
         _path.Add(node);
     }
 
 
-   
+
     // Setting color to regular nodes
     private void SetPathColor()
     {
-        foreach (Node node in _path) {
+        foreach (Node node in _path)
+        {
             node.GetComponentInChildren<Renderer>().material.color = _pathColor;
         }
         SetColor();

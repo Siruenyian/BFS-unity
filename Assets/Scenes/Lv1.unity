@@ -4497,7 +4497,8 @@ AudioSource:
   m_GameObject: {fileID: 1060740235}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 046bdb36c97da2a4fa67be49e82fb89b,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 9898e185820c82e44894d9fefd75d0dd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.305
@@ -6317,6 +6318,7 @@ MonoBehaviour:
   hpText: {fileID: 542439708}
   enemyLeft: {fileID: 1202269045}
   _nextLevel: Sample_02
+  isPaused: 0
 --- !u!4 &1378253548
 Transform:
   m_ObjectHideFlags: 0

@@ -6,18 +6,18 @@ using UnityEngine;
 // The size of cube is currently 10 in x and z
 
 // This script will be executed in edit mode
-[ExecuteInEditMode]                                       
+[ExecuteInEditMode]
 [RequireComponent(typeof(Node))]
 public class CubeEditorInEditMode : MonoBehaviour
 {
     private Node _node;
-    private int _gridSize;                                
+    private int _gridSize;
 
 
 
     private void OnEnable()
     {
-        _node = GetComponent<Node>();                     
+        _node = GetComponent<Node>();
     }
 
 
