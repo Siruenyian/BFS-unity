@@ -8,6 +8,12 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
+        //InvokeRepeating("LaunchEnemy", 2.0f, 3.0f);
+        LaunchEnemy();
+    }
+    void LaunchEnemy()
+    {
         Instantiate(_playerPrefab, transform.position, Quaternion.identity);
+
     }
 }

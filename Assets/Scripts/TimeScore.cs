@@ -8,7 +8,7 @@ public class TimeScore : MonoBehaviour
 {
     private bool timerActive;
     [SerializeField] private int startSeconds;
-    public PlayerHP playerHP;
+    public EnemyHP playerHP;
     public string score;
     public int fastesttime;
     float currentTime;

@@ -2,5 +2,5 @@
  kyk function protoype gitu sih*/
 public interface Iinteractable
 {
-    void Interact(Player player);
+    void Interact(Enemy player);
 }

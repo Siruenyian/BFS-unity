@@ -14,11 +14,11 @@ public class Node : MonoBehaviour
     private SearchPath searchPath;
     public bool isExplored = false;
     public Node isExploredFrom;
-    Player player;
+    Enemy enemy;
     private void Start()
     {
         searchPath = FindObjectOfType<SearchPath>();
-        player = FindObjectOfType<Player>();
+        enemy = FindObjectOfType<Enemy>();
     }
 
     public void SetObstacle()
@@ -61,6 +61,6 @@ public class Node : MonoBehaviour
         Debug.Log("Pressed!");
         SetObstacle();
         /*searchPath._endingPoint = this.gameObject.GetComponent<Node>();
-        player.move();*/
+        enemy.move();*/
     }
 }

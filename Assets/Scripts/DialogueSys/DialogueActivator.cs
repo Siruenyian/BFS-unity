@@ -28,7 +28,7 @@ public class DialogueActivator : MonoBehaviour, Iinteractable
     }
 
     /*function bdy dari interface*/
-    public void Interact(Player player)
+    public void Interact(Enemy player)
     {
         //Debug.Log("Interacted"+dialogueObj);
 
