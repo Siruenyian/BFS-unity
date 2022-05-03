@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2316325596617259788}
   - component: {fileID: 6831045628609290871}
   m_Layer: 0
-  m_Name: hahaNode
+  m_Name: CrateNode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 2237189976221551123}
   - component: {fileID: 4967889917962180870}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -501,7 +501,7 @@ GameObject:
   - component: {fileID: 4153678208555586130}
   - component: {fileID: 34137268980876749}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Select
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

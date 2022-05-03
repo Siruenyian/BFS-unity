@@ -5969,7 +5969,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: AKA scuffed pathfindingwith korone
+  m_text: AKA scuffed pathfinding
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d521ad41fdd42fd42be3f1d50e08c365, type: 2}
   m_sharedMaterial: {fileID: 2604357149350021156, guid: d521ad41fdd42fd42be3f1d50e08c365,
