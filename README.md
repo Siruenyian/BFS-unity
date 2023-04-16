@@ -1,4 +1,4 @@
-# Game Project - Lost_Infind
+# Game Project - Breadth First Search implementation
 
 ## Info
 
